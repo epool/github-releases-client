@@ -16,7 +16,7 @@ class GithubReleasesClientTest : Spek({
     val client = GithubReleasesClient.newInstance(
         "epool",
         "github-releases-client-test",
-        "abfcb33eade606093c08676fac10c59c23ce5a3b"
+        System.getenv("BotToken")
     )
 
     test("Get No Releases") {
