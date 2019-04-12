@@ -11,12 +11,12 @@ import kotlin.test.assertTrue
 class GithubReleasesClientTest : Spek({
 
     val tagName = "1.0.0"
-    val releaseName = "v1.0.0"
+    val releaseName = "v$tagName"
 
     val client = GithubReleasesClient.newInstance(
         "epool",
         "github-releases-client-test",
-        "bfe35b54b85318fb2f24ed6a16984044651950b8"
+        "abfcb33eade606093c08676fac10c59c23ce5a3b"
     )
 
     test("Get No Releases") {
