@@ -14,5 +14,5 @@ data class ReleaseInfo(
     @SerializedName("tag_name")
     val tagName: String,
     @SerializedName("target_commitish")
-    val targetCommitish: String = "master"
+    val targetCommitish: String
 )

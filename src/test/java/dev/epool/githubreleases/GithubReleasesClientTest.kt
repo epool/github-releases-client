@@ -16,7 +16,7 @@ class GithubReleasesClientTest : Spek({
     val client = GithubReleasesClient.newInstance(
         "epool",
         "github-releases-client-test",
-        "015bee8e53b41fa1d114c563b694a203cf57b4e9"
+        "bfe35b54b85318fb2f24ed6a16984044651950b8"
     )
 
     test("Get No Releases") {
@@ -40,7 +40,8 @@ class GithubReleasesClientTest : Spek({
             body = description,
             name = releaseName,
             preRelease = true,
-            tagName = tagName
+            tagName = tagName,
+            targetCommitish = "master"
         )
         assertEquals(expectedReleaseInfo, release.releaseInfo)
     }
@@ -51,7 +52,8 @@ class GithubReleasesClientTest : Spek({
             body = description,
             name = "$releaseName-specific",
             preRelease = true,
-            tagName = "$tagName-specific"
+            tagName = "$tagName-specific",
+            targetCommitish = "master"
         )
 
         //act

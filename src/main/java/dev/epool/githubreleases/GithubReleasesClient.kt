@@ -23,10 +23,16 @@ class GithubReleasesClient(api: GithubApi) : GithubApi by api {
         tagName: String,
         description: String,
         isPreRelease: Boolean = true,
+        branch: String = "master",
         vararg assets: File
     ): Release {
-        val releaseInfo =
-            ReleaseInfo(body = description, name = releaseName, preRelease = isPreRelease, tagName = tagName)
+        val releaseInfo = ReleaseInfo(
+            body = description,
+            name = releaseName,
+            preRelease = isPreRelease,
+            tagName = tagName,
+            targetCommitish = branch
+        )
         return createRelease(releaseInfo, *assets)
     }
 
