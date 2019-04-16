@@ -33,7 +33,12 @@ class GithubReleasesClientTest : Spek({
         val description = "Description"
 
         //act
-        val release = client.createRelease(releaseName, tagName, description)
+        val release = client.createRelease(
+            releaseName,
+            tagName,
+            description,
+            assets = *arrayOf(File("hello-world.txt"))
+        )
 
         //assert
         val expectedReleaseInfo = ReleaseInfo(
@@ -62,6 +67,18 @@ class GithubReleasesClientTest : Spek({
         //assert
         assertEquals(expectedReleaseInfo, release.releaseInfo)
         client.deleteRelease(release)
+    }
+
+    test("Delete Asset") {
+        //arrange
+        val assetName = "hello-world.txt"
+        val release = client.findReleaseByName(releaseName)
+        assertNotNull(release)
+
+        //act
+        client.deleteAssetFromRelease(release, assetName)
+
+        //assert
     }
 
     test("Get All Releases") {

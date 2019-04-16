@@ -12,7 +12,7 @@ data class Asset(
     @SerializedName("download_count")
     val downloadCount: Int,
     @SerializedName("id")
-    val id: Int,
+    val id: Long,
     @SerializedName("label")
     val label: String,
     @SerializedName("name")

@@ -32,4 +32,7 @@ interface GithubApi {
         @Query("label") label: String? = null
     ): Call<Asset>
 
+    @DELETE("releases/assets/{asset_id}")
+    fun deleteAsset(@Path("asset_id") assetId: Long): Call<Unit>
+
 }

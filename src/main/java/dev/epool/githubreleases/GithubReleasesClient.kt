@@ -79,4 +79,9 @@ class GithubReleasesClient(api: GithubApi) : GithubApi by api {
         deleteTag(release.tagName).get()
     }
 
+    @JvmOverloads
+    fun deleteAssetFromRelease(release: Release, assetName: String? = null) = release.assets
+        .filter { asset -> assetName?.let { it == asset.name } ?: true }
+        .forEach { deleteAsset(it.id).get() }
+
 }
