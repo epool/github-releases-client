@@ -38,13 +38,13 @@ class GithubReleasesClient(api: GithubApi) : GithubApi by api {
 
     fun createRelease(releaseInfo: ReleaseInfo, vararg assets: File): Release =
         createRelease(releaseInfo).get().apply {
-            uploadAssets(cleanedUploadUrl, *assets)
+            uploadAssets(this, *assets)
         }
 
-    private fun uploadAssets(uploadUrl: String, vararg assets: File) = assets.forEach {
+    fun uploadAssets(release: Release, vararg assets: File) = assets.forEach {
         try {
             val body = RequestBody.create(MediaType.parse("application/octet-stream"), it)
-            uploadAsset(uploadUrl, body, it.name).get()
+            uploadAsset(release.uploadUrl, body, it.name).get()
         } catch (throwable: Throwable) {
             System.err.println(throwable.message)
         }

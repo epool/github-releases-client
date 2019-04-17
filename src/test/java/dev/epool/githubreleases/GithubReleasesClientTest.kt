@@ -69,6 +69,18 @@ class GithubReleasesClientTest : Spek({
         client.deleteRelease(release)
     }
 
+    test("Upload Asset") {
+        //arrange
+        val assetName = "hello-world.txt"
+        val release = client.findReleaseByName(releaseName)
+        assertNotNull(release)
+
+        //act
+        client.uploadAssets(release, File(assetName))
+
+        //assert
+    }
+
     test("Delete Asset") {
         //arrange
         val assetName = "hello-world.txt"
