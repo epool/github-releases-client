@@ -44,7 +44,7 @@ class GithubReleasesClient(api: GithubApi) : GithubApi by api {
     fun uploadAssets(release: Release, vararg assets: File) = assets.forEach {
         try {
             val body = RequestBody.create(MediaType.parse("application/octet-stream"), it)
-            uploadAsset(release.uploadUrl, body, it.name).get()
+            uploadAsset(release.cleanedUploadUrl, body, it.name).get()
         } catch (throwable: Throwable) {
             System.err.println(throwable.message)
         }
